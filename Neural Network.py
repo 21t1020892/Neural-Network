@@ -18,12 +18,15 @@ import traceback
 
 # Hàm khởi tạo MLflow
 def mlflow_input():
-    DAGSHUB_MLFLOW_URI = "https://dagshub.com/21t1020892/PCA-t-SNE.mlflow"
+    st.title(" HUẤN LUYỆN MÔ HÌNH ")
+    # Cấu hình DAGsHub MLflow URI 
+    DAGSHUB_MLFLOW_URI = "https://dagshub.com/21t1020892/Neural-Network.mlflow"
     mlflow.set_tracking_uri(DAGSHUB_MLFLOW_URI)
+    st.session_state['mlflow_url']=DAGSHUB_MLFLOW_URI
     os.environ["MLFLOW_TRACKING_USERNAME"] = "21t1020892"
     os.environ["MLFLOW_TRACKING_PASSWORD"] = "xN8@Q7V@Pbr6CYZ"
-    mlflow.set_experiment("PCA & t-SNE")
-    st.session_state['mlflow_url'] = DAGSHUB_MLFLOW_URI
+
+    mlflow.set_experiment("MNIST_NeuralNetwork")
 
 # Hàm tải dữ liệu từ OpenML
 @st.cache_data
@@ -97,9 +100,6 @@ def explain_nn():
     - **Hàm kích hoạt**: Biến đổi z để đưa ra giá trị phi tuyến, ví dụ:  
       $$ a = \\text{sigmoid}(z) = \\frac{1}{1 + e^{-z}} $$
     """)
-    st.image("https://i0.wp.com/nttuan8.com/wp-content/uploads/2019/03/human_neuron_anatomy.png?w=717&ssl=1", 
-             caption="Hoạt động của một nơ-ron trong mạng (Nguồn: nttuan8.com)", 
-             use_column_width=True)
 
     st.subheader("3. Mô hình Neural Network")
     st.markdown("""
@@ -108,10 +108,6 @@ def explain_nn():
     - **Tầng ẩn (Hidden Layers)**: Xử lý dữ liệu qua các nơ-ron với hàm kích hoạt.
     - **Tầng đầu ra (Output Layer)**: Đưa ra kết quả dự đoán .
     """)
-    st.image("https://i0.wp.com/nttuan8.com/wp-content/uploads/2019/03/nn-1.png?resize=768%2C631&ssl=1", 
-             caption="Cấu trúc mô hình neural network (Nguồn: nttuan8.com)", 
-             use_column_width=True)
-
     st.subheader("4. Logistic Regression")
     st.markdown("""
     **Logistic Regression** là một trường hợp đặc biệt của neural network với chỉ một tầng và hàm kích hoạt sigmoid. Nó được dùng để phân loại nhị phân (0 hoặc 1), nhưng có thể mở rộng cho phân loại đa lớp bằng cách sử dụng softmax thay vì sigmoid. Công thức cơ bản:
@@ -147,9 +143,6 @@ def explain_nn():
     2. Áp dụng hàm kích hoạt: $a^{[l]} = \\text{sigmoid}(z^{[l]})$.
     3. Lặp lại đến tầng đầu ra để có dự đoán $\\hat{y}$.
     """)
-    st.image("https://i0.wp.com/nttuan8.com/wp-content/uploads/2019/03/fw.png?w=1065&ssl=1", 
-             caption="Quá trình feedforward trong mạng nơ-ron (Nguồn: nttuan8.com)", 
-             use_column_width=True)
 
 
 # ... (Các hàm khác như data(), split_data(), train(), du_doan(), show_experiment_selector(), main() giữ nguyên)
