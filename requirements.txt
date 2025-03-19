@@ -6,3 +6,4 @@ pandas
 openml
 matplotlib
 plotly
+streamlit-drawable-canvas
